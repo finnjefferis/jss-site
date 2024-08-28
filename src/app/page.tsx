@@ -1,113 +1,226 @@
+"use client"; // This marks the component as a Client Component
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email and phone
 
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+  const subheading = "Empowering Local Businesses with Cost-Effective Software";
+  const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
+  const caretRef = useRef<HTMLSpanElement>(null); // Ref to the caret element
+
+  useEffect(() => {
+    setIsVisible(true); // Trigger the fade-in effect for the heading
+
+    let currentIndex = 0;
+    const typingSpeed = 50; // Adjusted speed for faster typing
+
+    const typingInterval = setInterval(() => {
+      if (textRef.current && currentIndex < subheading.length) {
+        textRef.current.textContent = subheading.slice(0, currentIndex + 1);
+        currentIndex++;
+
+        // Ensure the caret stays directly after the text
+        if (caretRef.current) {
+          caretRef.current.style.display = "inline-block";
+        }
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div>
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center min-h-screen bg-white">
+        <h1
+          className={`text-black text-4xl md:text-5xl font-bold transition-opacity duration-1000 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          } underline decoration-gray-400`}
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          Jefferis Software Solutions.
+        </h1>
+        <div className="flex items-center mt-2">
+          <p
+            ref={textRef} // Assign the ref to the paragraph
+            className="text-xl md:text-3xl font-light text-gray-700"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            {/* The text content will be updated directly */}
+          </p>
+          <span
+            ref={caretRef} // Assign the ref to the caret
+            className="caret"
+          >
+            &nbsp;
+          </span>
         </div>
-      </div>
+        <div className="mt-32">
+          <div className="bounce">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-black"
+            >
+              <path d="M12 16L8 12H16L12 16Z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+      </section>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* Why Me / Portfolio Section */}
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
+        <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
+        <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
+          With years of experience in building full-stack applications across
+          diverse industries, we are well-equipped to deliver comprehensive
+          software solutions tailored to your business needs. From design and
+          specification to development, testing, and ongoing support, we provide
+          end-to-end services that offer exceptional value and meet your
+          business objectives.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Project 1: Toolbox for Beyond Procurement */}
+          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
+            <Image
+              src="/toolbox.png" // Corrected image path
+              alt="Toolbox for Beyond Procurement"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-semibold mb-2 text-center">
+              Toolbox for Beyond Procurement
+            </h3>
+            <p className="text-gray-600 text-center">
+              A comprehensive toolbox designed to streamline procurement
+              processes and enhance efficiency for businesses.
+            </p>
+          </div>
+          {/* Project 2: Carbon Calculator for Beyond Procurement */}
+          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
+            <Image
+              src="/carbon.png" // Corrected image path
+              alt="Carbon Calculator for Beyond Procurement"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-semibold mb-2 text-center">
+              Carbon Calculator for Beyond Procurement
+            </h3>
+            <p className="text-gray-600 text-center">
+              A tool for calculating and reducing carbon footprints, helping
+              organizations meet sustainability goals.
+            </p>
+          </div>
+          {/* Project 3: My Portfolio Site */}
+          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
+            <Image
+              src="/portfolio2.png" // Corrected image path
+              alt="My Portfolio Site"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-semibold mb-2 text-center">
+              My Portfolio Site
+            </h3>
+            <p className="text-gray-600 text-center">
+              A showcase of my skills and projects, demonstrating my expertise
+              in web development and design.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* Contact Me Section */}
+      <section className="flex flex-col items-center justify-center min-h-screen bg-white">
+        <h2 className="text-4xl font-bold text-black mb-8">Contact Me</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <div className="bg-gray-100 p-6 shadow-lg rounded-lg">
+            <form className="w-full max-w-lg">
+              <div className="flex flex-col mb-4">
+                <label
+                  className="mb-2 text-gray-700 font-medium"
+                  htmlFor="name"
+                >
+                  Name
+                </label>
+                <input
+                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="text"
+                  id="name"
+                  placeholder="Your Name"
+                />
+              </div>
+              <div className="flex flex-col mb-4">
+                <label
+                  className="mb-2 text-gray-700 font-medium"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <input
+                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  type="email"
+                  id="email"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div className="flex flex-col mb-4">
+                <label
+                  className="mb-2 text-gray-700 font-medium"
+                  htmlFor="message"
+                >
+                  Message
+                </label>
+                <textarea
+                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  id="message"
+                  rows={5}
+                  placeholder="Your Message"
+                />
+              </div>
+              <button
+                type="submit"
+                className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+          {/* Contact Information */}
+          <div className="bg-gray-100 p-6 shadow-lg rounded-lg flex flex-col items-center justify-center">
+            <div className="flex items-center mb-4">
+              <FaEnvelope className="text-2xl text-gray-700 mr-2" />
+              <a
+                href="mailto:finnjefferis@gmail.com"
+                className="text-xl font-medium text-gray-700"
+              >
+                finnjefferis@gmail.com
+              </a>
+            </div>
+            <div className="flex items-center">
+              <FaPhone className="text-2xl text-gray-700 mr-2" />
+              <a
+                href="tel:+447939309355"
+                className="text-xl font-medium text-gray-700"
+              >
+                07939309355
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
