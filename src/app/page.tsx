@@ -40,7 +40,7 @@ export default function Home() {
         <h1
           className={`text-black text-4xl md:text-5xl font-bold transition-opacity duration-1000 ${
             isVisible ? "opacity-100" : "opacity-0"
-          } underline decoration-gray-400`}
+          } `}
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           Jefferis Software Solutions.
