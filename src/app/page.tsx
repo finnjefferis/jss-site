@@ -42,10 +42,10 @@ export default function Home() {
         >
           Jefferis Software Solutions.
         </h1>
-        <div className="flex items-center mt-2 text-left md:text-center">
+        <div className="flex items-center  justify-center mt-2 sm:p-4 text-left md:text-center w-full">
           <p
             ref={textRef} // Assign the ref to the paragraph
-            className="text-lg md:text-3xl p-4 font-light text-gray-700"
+            className="text-lg md:text-3xl text-left md:text-center px-4 font-light text-gray-700 w-full"
           >
             {/* The text content will be updated directly */}
           </p>
