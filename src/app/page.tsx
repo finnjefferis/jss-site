@@ -7,8 +7,8 @@ import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
+
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
-  const caretRef = useRef<HTMLSpanElement>(null); // Ref to the caret element
 
   useEffect(() => {
     setIsVisible(true); // Trigger the fade-in effect for the heading
@@ -17,14 +17,11 @@ export default function Home() {
     const typingSpeed = 50; // Adjusted speed for faster typing
 
     const typingInterval = setInterval(() => {
-      if (textRef.current && currentIndex < subheading.length) {
-        textRef.current.textContent = subheading.slice(0, currentIndex + 1);
+      if (textRef.current && currentIndex <= subheading.length) {
+        textRef.current.innerHTML =
+          subheading.slice(0, currentIndex) +
+          '<span class="caret">&nbsp;</span>';
         currentIndex++;
-
-        // Ensure the caret stays directly after the text
-        if (caretRef.current) {
-          caretRef.current.style.display = "inline-block";
-        }
       } else {
         clearInterval(typingInterval);
       }
@@ -36,28 +33,22 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-white">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
         <h1
           className={`text-black text-4xl md:text-5xl font-bold transition-opacity duration-1000 ${
             isVisible ? "opacity-100" : "opacity-0"
-          } mx-4 md:mx-0`}
+          } mx-4 md:mx-0 text-left md:text-center`}
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           Jefferis Software Solutions.
         </h1>
-        <div className="flex items-center mt-2">
+        <div className="flex items-center mt-2 text-left md:text-center">
           <p
             ref={textRef} // Assign the ref to the paragraph
-            className="text-xl md:text-3xl font-light text-gray-700"
+            className="text-lg md:text-3xl p-4 font-light text-gray-700"
           >
             {/* The text content will be updated directly */}
           </p>
-          <span
-            ref={caretRef} // Assign the ref to the caret
-            className="caret"
-          >
-            &nbsp;
-          </span>
         </div>
         <div className="mt-32">
           <div className="bounce">
@@ -75,7 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Me / Portfolio Section */}
+      {/* Why Us / Portfolio Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
