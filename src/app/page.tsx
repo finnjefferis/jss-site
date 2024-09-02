@@ -65,17 +65,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Why Us / Portfolio Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
-          With years of experience in building full-stack applications across
-          diverse industries, we are well-equipped to deliver comprehensive
-          software solutions tailored to your business needs. From design and
-          specification to development, testing, and ongoing support, we provide
-          end-to-end services that offer exceptional value and meet your
-          business objectives.
+          We specialize in designing, developing, implementing, and testing
+          software solutions tailored for local businesses. Our services include
+          Shopify development, API integrations, and bespoke application
+          development, ensuring your business stays ahead in the digital
+          landscape.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Project 1: Toolbox for Beyond Procurement */}
@@ -131,14 +129,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Contact Me Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white">
-        <h2 className="text-4xl font-bold text-black mb-8">Contact Me</h2>
+        <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="bg-gray-100 p-6 shadow-lg rounded-lg">
-            <form className="w-full max-w-lg">
+          <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full max-w-lg mx-auto">
+            <form className="w-full">
               <div className="flex flex-col mb-4">
                 <label
                   className="mb-2 text-gray-700 font-medium"
@@ -189,6 +186,7 @@ export default function Home() {
               </button>
             </form>
           </div>
+
           {/* Contact Information */}
           <div className="bg-gray-100 p-6 shadow-lg rounded-lg flex flex-col items-center justify-center">
             <div className="flex items-center mb-4">
