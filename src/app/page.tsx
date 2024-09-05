@@ -96,7 +96,7 @@ export default function Home() {
           {/* Project 2: Carbon Calculator for Beyond Procurement */}
           <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
             <Image
-              src="/carbon.png" // Corrected image path
+              src="/carbon.png"
               alt="Carbon Calculator for Beyond Procurement"
               width={500}
               height={300}
@@ -108,23 +108,6 @@ export default function Home() {
             <p className="text-gray-600 text-center">
               A tool for calculating and reducing carbon footprints, helping
               organizations meet sustainability goals.
-            </p>
-          </div>
-          {/* Project 3: My Portfolio Site */}
-          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
-            <Image
-              src="/portfolio2.png" // Corrected image path
-              alt="My Portfolio Site"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <h3 className="text-2xl font-semibold mb-2 text-center">
-              My Portfolio Site
-            </h3>
-            <p className="text-gray-600 text-center">
-              A showcase of my skills and projects, demonstrating my expertise
-              in web development and design.
             </p>
           </div>
         </div>
