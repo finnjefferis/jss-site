@@ -32,7 +32,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
         <h1
           className={`text-black text-4xl md:text-5xl font-bold transition-opacity duration-1000 ${
