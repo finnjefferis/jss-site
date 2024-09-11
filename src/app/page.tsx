@@ -6,6 +6,7 @@ import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email 
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
 
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
@@ -30,6 +31,10 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen); // Toggle modal state
+  };
+
   return (
     <div>
       <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
@@ -41,13 +46,11 @@ export default function Home() {
         >
           Jefferis Software Solutions.
         </h1>
-        <div className="flex items-center  justify-center mt-2 sm:p-4 text-left md:text-center w-full">
+        <div className="flex items-center justify-center mt-2 sm:p-4 text-left md:text-center w-full">
           <p
             ref={textRef} // Assign the ref to the paragraph
             className="text-lg md:text-3xl text-left md:text-center px-4 font-light text-gray-700 w-full"
-          >
-            {/* The text content will be updated directly */}
-          </p>
+          ></p>
         </div>
         <div className="mt-32">
           <div className="bounce">
@@ -64,7 +67,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Why Us / Portfolio Section */}
+
       {/* Why Us / Portfolio Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
@@ -77,7 +80,10 @@ export default function Home() {
         </p>
 
         {/* Single Project: Toolbox for Beyond Procurement */}
-        <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
+        <div
+          className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center cursor-pointer"
+          onClick={toggleModal} // Open modal on click
+        >
           <Image
             src="/toolbox.png" // Corrected image path
             alt="Toolbox for Beyond Procurement"
@@ -96,6 +102,44 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-lg relative">
+            <button
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+              onClick={toggleModal}
+            >
+              ✕
+            </button>
+            <h3 className="text-2xl font-bold mb-4 text-center">
+              Toolbox for Beyond Procurement
+            </h3>
+            <Image
+              src="/toolbox.png" // Corrected image path
+              alt="Toolbox for Beyond Procurement"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <p className="text-gray-600 text-center mb-4">
+              A comprehensive toolbox designed to streamline procurement
+              processes and enhance efficiency for businesses. The solution
+              helps businesses reduce time spent on manual tasks and focus on
+              more strategic work, ultimately increasing productivity and saving
+              costs.
+            </p>
+            <button
+              onClick={toggleModal}
+              className="mt-4 px-4 py-2 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Contact Me Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white">
         <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
