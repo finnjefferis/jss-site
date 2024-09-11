@@ -65,6 +65,7 @@ export default function Home() {
         </div>
       </section>
       {/* Why Us / Portfolio Section */}
+      {/* Why Us / Portfolio Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
@@ -74,41 +75,25 @@ export default function Home() {
           development, ensuring your business stays ahead in the digital
           landscape.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Project 1: Toolbox for Beyond Procurement */}
-          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
-            <Image
-              src="/toolbox.png" // Corrected image path
-              alt="Toolbox for Beyond Procurement"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <h3 className="text-2xl font-semibold mb-2 text-center">
-              Toolbox for Beyond Procurement
-            </h3>
-            <p className="text-gray-600 text-center">
-              A comprehensive toolbox designed to streamline procurement
-              processes and enhance efficiency for businesses.
-            </p>
-          </div>
-          {/* Project 2: Carbon Calculator for Beyond Procurement */}
-          <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
-            <Image
-              src="/carbon.png"
-              alt="Carbon Calculator for Beyond Procurement"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <h3 className="text-2xl font-semibold mb-2 text-center">
-              Carbon Calculator for Beyond Procurement
-            </h3>
-            <p className="text-gray-600 text-center">
-              A tool for calculating and reducing carbon footprints, helping
-              organizations meet sustainability goals.
-            </p>
-          </div>
+
+        {/* Single Project: Toolbox for Beyond Procurement */}
+        <div className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center">
+          <Image
+            src="/toolbox.png" // Corrected image path
+            alt="Toolbox for Beyond Procurement"
+            width={500}
+            height={300}
+            className="rounded-lg mb-4"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-center">
+            Toolbox for Beyond Procurement
+          </h3>
+          <p className="text-gray-600 text-center">
+            A comprehensive toolbox designed to streamline procurement processes
+            and enhance efficiency for businesses. The solution helps businesses
+            reduce time spent on manual tasks and focus on more strategic work,
+            ultimately increasing productivity and saving costs.
+          </p>
         </div>
       </section>
       {/* Contact Me Section */}
