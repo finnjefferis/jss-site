@@ -3,6 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email and phone
+import {
+  FaCode,
+  FaShoppingCart,
+  FaCogs,
+  FaProjectDiagram,
+} from "react-icons/fa";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,10 +87,12 @@ export default function Home() {
           unique challenges and goals of each client.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Custom Web Development */}
           <div
             className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
             onClick={() => toggleModal("Custom Web Development")}
           >
+            <FaCode className="text-5xl text-blue-500 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold mb-4">
               Custom Web Development
             </h3>
@@ -93,10 +101,13 @@ export default function Home() {
               business needs.
             </p>
           </div>
+
+          {/* E-commerce Solutions */}
           <div
             className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
             onClick={() => toggleModal("E-commerce Solutions")}
           >
+            <FaShoppingCart className="text-5xl text-green-500 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold mb-4">
               E-commerce Solutions
             </h3>
@@ -105,31 +116,36 @@ export default function Home() {
               for local businesses.
             </p>
           </div>
+
+          {/* API Integrations */}
           <div
             className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
             onClick={() => toggleModal("API Integrations")}
           >
+            <FaProjectDiagram className="text-5xl text-yellow-500 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold mb-4">API Integrations</h3>
             <p className="text-gray-600">
               Seamless integration of third-party services such as Zoho to
               improve business workflows.
             </p>
           </div>
+
+          {/* Bespoke Software Development */}
           <div
             className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
             onClick={() => toggleModal("Bespoke Software Development")}
           >
+            <FaCogs className="text-5xl text-red-500 mx-auto mb-4" />
             <h3 className="text-2xl font-semibold mb-4">
               Bespoke Software Development
             </h3>
             <p className="text-gray-600">
               Custom software applications to streamline your business
-              operations and maximise productivity.
+              operations and maximize productivity.
             </p>
           </div>
         </div>
       </section>
-
       {/* Our Work Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
