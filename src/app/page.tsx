@@ -76,10 +76,9 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
-          At Jefferis Software Solutions, we specialize in designing,
-          developing, and implementing software that empowers local businesses.
-          Our solutions are tailored to meet the unique challenges and goals of
-          each client.
+          We specialize in designing, developing, and implementing software that
+          empowers local businesses. Our solutions are tailored to meet the
+          unique challenges and goals of each client.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
@@ -125,7 +124,7 @@ export default function Home() {
             </h3>
             <p className="text-gray-600">
               Custom software applications to streamline your business
-              operations and enhance productivity.
+              operations and maximise productivity.
             </p>
           </div>
         </div>
@@ -154,21 +153,6 @@ export default function Home() {
               local businesses.
             </p>
           </div>
-          <div className="bg-white p-8 shadow-lg rounded-lg cursor-pointer">
-            <Image
-              src="/another-project.png"
-              alt="Another Project"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <h3 className="text-2xl font-semibold mb-2 text-center">
-              Project Name
-            </h3>
-            <p className="text-gray-600 text-center">
-              Brief description of the project.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -195,11 +179,9 @@ export default function Home() {
                   className="rounded-lg mb-4"
                 />
                 <p className="text-gray-600 text-center mb-4">
-                  A comprehensive toolbox designed to streamline procurement
-                  processes and enhance efficiency for businesses. The solution
-                  helps businesses reduce time spent on manual tasks and focus
-                  on more strategic work, ultimately increasing productivity and
-                  saving costs.
+                  Toolbox is a custom platform that lets clients upload their
+                  bills to easily identify opportunities for both cost savings
+                  and carbon reduction.
                 </p>
               </>
             )}
