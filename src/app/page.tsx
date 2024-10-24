@@ -133,7 +133,7 @@ export default function Home() {
       {/* Our Work Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-8">
           <div
             className="bg-white p-8 shadow-lg rounded-lg cursor-pointer"
             onClick={() => toggleModal("Toolbox for Beyond Procurement")}
@@ -179,9 +179,9 @@ export default function Home() {
                   className="rounded-lg mb-4"
                 />
                 <p className="text-gray-600 text-center mb-4">
-                  Toolbox is a custom platform that lets clients upload their
-                  bills to easily identify opportunities for both cost savings
-                  and carbon reduction.
+                  Toolbox is a bespoke web platform created in C# .NET that lets
+                  clients upload their bills to easily identify opportunities
+                  for both cost savings and carbon reduction.
                 </p>
               </>
             )}
