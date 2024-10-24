@@ -7,6 +7,7 @@ import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [modalContent, setModalContent] = useState(null); // State for dynamic modal content
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
 
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
@@ -31,12 +32,14 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
-  const toggleModal = () => {
+  const toggleModal = (content = null) => {
+    setModalContent(content); // Set modal content dynamically based on the clicked service
     setIsModalOpen(!isModalOpen); // Toggle modal state
   };
 
   return (
     <div>
+      {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
         <h1
           className={`text-black text-4xl md:text-5xl font-bold transition-opacity duration-1000 ${
@@ -68,6 +71,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Us Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
@@ -76,8 +80,11 @@ export default function Home() {
           Our solutions are tailored to meet the unique challenges and goals of
           each client.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
+            onClick={() => toggleModal("Custom Web Development")}
+          >
             <h3 className="text-2xl font-semibold mb-4">
               Custom Web Development
             </h3>
@@ -86,7 +93,10 @@ export default function Home() {
               business needs.
             </p>
           </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+          <div
+            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
+            onClick={() => toggleModal("E-commerce Solutions")}
+          >
             <h3 className="text-2xl font-semibold mb-4">
               E-commerce Solutions
             </h3>
@@ -95,14 +105,20 @@ export default function Home() {
               for local businesses.
             </p>
           </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+          <div
+            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
+            onClick={() => toggleModal("API Integrations")}
+          >
             <h3 className="text-2xl font-semibold mb-4">API Integrations</h3>
             <p className="text-gray-600">
               Seamless integration of third-party services such as Zoho to
               improve business workflows.
             </p>
           </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+          <div
+            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
+            onClick={() => toggleModal("Bespoke Software Development")}
+          >
             <h3 className="text-2xl font-semibold mb-4">
               Bespoke Software Development
             </h3>
@@ -113,12 +129,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Our Work Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
             className="bg-white p-8 shadow-lg rounded-lg cursor-pointer"
-            onClick={toggleModal}
+            onClick={() => toggleModal("Toolbox for Beyond Procurement")}
           >
             <Image
               src="/toolbox.png"
@@ -136,7 +154,6 @@ export default function Home() {
             </p>
           </div>
           <div className="bg-white p-8 shadow-lg rounded-lg cursor-pointer">
-            {/* Add another project here */}
             <Image
               src="/another-project.png"
               alt="Another Project"
@@ -160,29 +177,63 @@ export default function Home() {
           <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-lg relative">
             <button
               className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-              onClick={toggleModal}
+              onClick={() => toggleModal(null)}
             >
               ✕
             </button>
             <h3 className="text-2xl font-bold mb-4 text-center">
-              Toolbox for Beyond Procurement
+              {modalContent}
             </h3>
-            <Image
-              src="/toolbox.png" // Corrected image path
-              alt="Toolbox for Beyond Procurement"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <p className="text-gray-600 text-center mb-4">
-              A comprehensive toolbox designed to streamline procurement
-              processes and enhance efficiency for businesses. The solution
-              helps businesses reduce time spent on manual tasks and focus on
-              more strategic work, ultimately increasing productivity and saving
-              costs.
-            </p>
+            {modalContent === "Toolbox for Beyond Procurement" && (
+              <>
+                <Image
+                  src="/toolbox.png"
+                  alt="Toolbox for Beyond Procurement"
+                  width={500}
+                  height={300}
+                  className="rounded-lg mb-4"
+                />
+                <p className="text-gray-600 text-center mb-4">
+                  A comprehensive toolbox designed to streamline procurement
+                  processes and enhance efficiency for businesses. The solution
+                  helps businesses reduce time spent on manual tasks and focus
+                  on more strategic work, ultimately increasing productivity and
+                  saving costs.
+                </p>
+              </>
+            )}
+            {modalContent === "Custom Web Development" && (
+              <p className="text-gray-600 text-center mb-4">
+                Our custom web development services include creating fully
+                responsive, SEO-optimized websites tailored specifically to your
+                business needs. We use the latest web technologies like React,
+                Next.js, and more.
+              </p>
+            )}
+            {modalContent === "E-commerce Solutions" && (
+              <p className="text-gray-600 text-center mb-4">
+                We specialize in building robust e-commerce solutions on
+                platforms like Shopify and WooCommerce, including custom
+                integrations and payment gateways.
+              </p>
+            )}
+            {modalContent === "API Integrations" && (
+              <p className="text-gray-600 text-center mb-4">
+                With our API integration services, we seamlessly connect your
+                business applications with third-party services such as Zoho,
+                making your workflows more efficient.
+              </p>
+            )}
+            {modalContent === "Bespoke Software Development" && (
+              <p className="text-gray-600 text-center mb-4">
+                Our bespoke software development service provides custom
+                solutions that are tailored to streamline and optimize your
+                business processes, ensuring you get the best out of your
+                operations.
+              </p>
+            )}
             <button
-              onClick={toggleModal}
+              onClick={() => toggleModal(null)}
               className="mt-4 px-4 py-2 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300"
             >
               Close
