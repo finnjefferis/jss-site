@@ -133,9 +133,9 @@ export default function Home() {
       {/* Our Work Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="flex items-center justify-center">
           <div
-            className="bg-white p-8 shadow-lg rounded-lg cursor-pointer"
+            className="bg-white p-8 shadow-lg rounded-lg cursor-pointer max-w-md"
             onClick={() => toggleModal("Toolbox for Beyond Procurement")}
           >
             <Image
