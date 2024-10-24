@@ -7,7 +7,8 @@ import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
-  const [modalContent, setModalContent] = useState(null); // State for dynamic modal content
+  const [modalContent, setModalContent] = useState<string | null>(null);
+
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
 
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
@@ -32,7 +33,7 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
-  const toggleModal = (content = null) => {
+  const toggleModal = (content: string | null = null) => {
     setModalContent(content); // Set modal content dynamically based on the clicked service
     setIsModalOpen(!isModalOpen); // Toggle modal state
   };
