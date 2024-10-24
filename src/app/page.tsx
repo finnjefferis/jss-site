@@ -68,38 +68,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Us / Portfolio Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
-          We specialize in designing, developing, implementing, and testing
-          software solutions tailored for local businesses. Our services include
-          Shopify development, API integrations, and bespoke application
-          development, ensuring your business stays ahead in the digital
-          landscape.
+          At Jefferis Software Solutions, we specialize in designing,
+          developing, and implementing software that empowers local businesses.
+          Our solutions are tailored to meet the unique challenges and goals of
+          each client.
         </p>
-
-        {/* Single Project: Toolbox for Beyond Procurement */}
-        <div
-          className="bg-white p-8 shadow-lg rounded-lg flex flex-col items-center cursor-pointer"
-          onClick={toggleModal} // Open modal on click
-        >
-          <Image
-            src="/toolbox.png" // Corrected image path
-            alt="Toolbox for Beyond Procurement"
-            width={500}
-            height={300}
-            className="rounded-lg mb-4"
-          />
-          <h3 className="text-2xl font-semibold mb-2 text-center">
-            Toolbox for Beyond Procurement
-          </h3>
-          <p className="text-gray-600 text-center">
-            A comprehensive toolbox designed to streamline procurement processes
-            and enhance efficiency for businesses. The solution helps businesses
-            reduce time spent on manual tasks and focus on more strategic work,
-            ultimately increasing productivity and saving costs.
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+            <h3 className="text-2xl font-semibold mb-4">
+              Custom Web Development
+            </h3>
+            <p className="text-gray-600">
+              Fully responsive and SEO-optimized websites tailored to your
+              business needs.
+            </p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+            <h3 className="text-2xl font-semibold mb-4">
+              E-commerce Solutions
+            </h3>
+            <p className="text-gray-600">
+              Expertise in Shopify, WooCommerce, and custom e-commerce solutions
+              for local businesses.
+            </p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+            <h3 className="text-2xl font-semibold mb-4">API Integrations</h3>
+            <p className="text-gray-600">
+              Seamless integration of third-party services such as Zoho to
+              improve business workflows.
+            </p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg text-center">
+            <h3 className="text-2xl font-semibold mb-4">
+              Bespoke Software Development
+            </h3>
+            <p className="text-gray-600">
+              Custom software applications to streamline your business
+              operations and enhance productivity.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
+        <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            className="bg-white p-8 shadow-lg rounded-lg cursor-pointer"
+            onClick={toggleModal}
+          >
+            <Image
+              src="/toolbox.png"
+              alt="Toolbox for Beyond Procurement"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-semibold mb-2 text-center">
+              Toolbox for Beyond Procurement
+            </h3>
+            <p className="text-gray-600 text-center">
+              A comprehensive toolbox to streamline procurement processes for
+              local businesses.
+            </p>
+          </div>
+          <div className="bg-white p-8 shadow-lg rounded-lg cursor-pointer">
+            {/* Add another project here */}
+            <Image
+              src="/another-project.png"
+              alt="Another Project"
+              width={500}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-2xl font-semibold mb-2 text-center">
+              Project Name
+            </h3>
+            <p className="text-gray-600 text-center">
+              Brief description of the project.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -141,10 +192,14 @@ export default function Home() {
       )}
 
       {/* Contact Me Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-white">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
+        <p className="text-xl text-center mb-12 text-gray-700">
+          Ready to elevate your business with custom software solutions? Get in
+          touch today to discuss your project needs!
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact Form */}
+          {/* Contact form as you currently have */}
           <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full max-w-lg mx-auto">
             <form className="w-full">
               <div className="flex flex-col mb-4">
@@ -197,8 +252,7 @@ export default function Home() {
               </button>
             </form>
           </div>
-
-          {/* Contact Information */}
+          {/* Contact info as you currently have */}
           <div className="bg-gray-100 p-6 shadow-lg rounded-lg flex flex-col items-center justify-center">
             <div className="flex items-center mb-4">
               <FaEnvelope className="text-2xl text-gray-700 mr-2" />
@@ -215,7 +269,7 @@ export default function Home() {
                 href="tel:+447939309355"
                 className="text-xl font-medium text-gray-700"
               >
-                07939309355
+                07939 309355
               </a>
             </div>
           </div>
