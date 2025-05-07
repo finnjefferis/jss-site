@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email and phone
+import { FaRegCalendarAlt } from "react-icons/fa";
+
+import { BsCheck2Circle } from "react-icons/bs";  // for bullets
 import {
   FaCode,
   FaShoppingCart,
@@ -106,15 +108,7 @@ function ContactForm() {
         🔒 Your information is private and will never be shared.
       </p>
 
-      {/* optional Calendly link */}
-      <a
-        href="https://calendly.com/finnjefferis/30min"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block text-center text-sm underline mt-4"
-      >
-        Prefer to chat? Book a slot →
-      </a>
+    
     </form>
   );
 }
@@ -210,77 +204,75 @@ export default function Home() {
 
       </section>
 
-      {/* Why Us Section */}
-      <section className="bg-gray-100 py-12 px-4">
-  <div className="max-w-6xl mx-auto flex flex-col items-center justify-center">
+      <section className="bg-gray-100 py-16 px-4">
+  <div className="max-w-6xl mx-auto flex flex-col items-center">
+    <h2 className="text-4xl font-bold mb-10">How I Can Help</h2>
 
-        <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
-        <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
-          We specialize in designing, developing, and implementing software that
-          empowers local businesses. Our solutions are tailored to meet the
-          unique challenges and goals of each client.
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+      {/* BUILD & LAUNCH */}
+      <div
+        onClick={() => toggleModal("Build & Launch")}
+        className="group bg-white p-8 shadow-lg rounded-2xl text-center cursor-pointer hover:shadow-2xl transition"
+      >
+        {/* icon */}
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-100 text-blue-600
+                        group-hover:scale-110 group-hover:rotate-6 transition duration-300">
+          <FaCode className="text-4xl" />
+        </div>
+
+        <h3 className="text-2xl font-bold mb-4">Build & Launch</h3>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          New marketing site, e-commerce store or bespoke app—finished, live and
+          ready to earn.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Custom Web Development */}
-          <div
-            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
-            onClick={() => toggleModal("Custom Web Development")}
-          >
-            <FaCode className="text-5xl text-blue-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">
-              Custom Web Development
-            </h3>
-            <p className="text-gray-600">
-              Fully responsive and SEO-optimized websites tailored to your
-              business needs.
-            </p>
-          </div>
 
-          {/* E-commerce Solutions */}
-          <div
-            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
-            onClick={() => toggleModal("E-commerce Solutions")}
-          >
-            <FaShoppingCart className="text-5xl text-green-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">
-              E-commerce Solutions
-            </h3>
-            <p className="text-gray-600">
-              Expertise in Shopify, WooCommerce, and custom e-commerce solutions
-              for local businesses.
-            </p>
-          </div>
+        {/* quick benefits */}
+        <ul className="space-y-2 text-left inline-block">
+          {["Full-stack dev (Next.js, .NET)", "SEO & core-web-vitals ready", "CRM / payment integrations"].map(
+            (item) => (
+              <li key={item} className="flex items-start gap-2 text-gray-600">
+                <BsCheck2Circle className="text-blue-600 mt-0.5" />
+                <span>{item}</span>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
 
-          {/* API Integrations */}
-          <div
-            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
-            onClick={() => toggleModal("API Integrations")}
-          >
-            <FaProjectDiagram className="text-5xl text-yellow-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">API Integrations</h3>
-            <p className="text-gray-600">
-              Seamless integration of third-party services such as Zoho to
-              improve business workflows.
-            </p>
-          </div>
-
-          {/* Bespoke Software Development */}
-          <div
-            className="bg-white p-6 shadow-lg rounded-lg text-center cursor-pointer"
-            onClick={() => toggleModal("Bespoke Software Development")}
-          >
-            <FaCogs className="text-5xl text-red-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold mb-4">
-              Bespoke Software Development
-            </h3>
-            <p className="text-gray-600">
-              Custom software applications to streamline your business
-              operations and maximize productivity.
-            </p>
-          </div>
+      {/* FIX & GROW */}
+      <div
+        onClick={() => toggleModal("Fix & Grow")}
+        className="group bg-white p-8 shadow-lg rounded-2xl text-center cursor-pointer hover:shadow-2xl transition"
+      >
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-600
+                        group-hover:scale-110 group-hover:-rotate-6 transition duration-300">
+          <FaCogs className="text-4xl" />
         </div>
-        </div>
-      </section>
+
+        <h3 className="text-2xl font-bold mb-4">Fix & Grow</h3>
+
+        <p className="text-gray-700 leading-relaxed mb-4">
+          Own a site already? I optimise, troubleshoot and add revenue-boosting
+          features.
+        </p>
+
+        <ul className="space-y-2 text-left inline-block">
+          {["Speed & SEO audits", "WordPress / Squarespace rescue", "Ongoing care & feature dev"].map(
+            (item) => (
+              <li key={item} className="flex items-start gap-2 text-gray-600">
+                <BsCheck2Circle className="text-emerald-600 mt-0.5" />
+                <span>{item}</span>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
       {/* Our Work Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
@@ -379,41 +371,50 @@ export default function Home() {
       {/* Contact Me Section */}
   {/* CONTACT ME SECTION */}
   <section
-        id="contact"
-        className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12"
-      >
-        <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
-        <p className="text-xl text-center mb-12 text-gray-700">
-          Ready to elevate your business with custom software solutions? Drop me a line below or
-          book a quick call — I usually reply within one business day.
-        </p>
+  id="contact"
+  className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12"
+>
+  <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
+  <p className="text-xl text-center mb-12 text-gray-700">
+    Ready to elevate your business with custom software solutions? Book a free call or send a message.
+  </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-          {/* form */}
-          <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full">
-            <ContactForm />
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+    {/* ⬅ LEFT: Calendly Booking Card */}
+    <div className="bg-gray-100 p-8 shadow-lg rounded-2xl flex flex-col items-center text-center space-y-6">
+  {/* Icon with circle background */}
+  <div className="bg-stone-200 text-stone-800 p-4 rounded-full">
+    <FaRegCalendarAlt className="text-5xl" />
+  </div>
 
-          {/* direct contact card */}
-          <div className="bg-gray-100 p-6 shadow-lg rounded-lg flex flex-col items-center justify-center">
-            <div className="flex items-center mb-4">
-              <FaEnvelope className="text-2xl text-gray-700 mr-2" />
-              <a href="mailto:finnjefferis@gmail.com" className="text-xl font-medium text-gray-700">
-                finnjefferis@gmail.com
-              </a>
-            </div>
-            <div className="flex items-center">
-              <FaPhone className="text-2xl text-gray-700 mr-2" />
-              <a href="tel:+447939309355" className="text-xl font-medium text-gray-700">
-                07939 309355
-              </a>
-            </div>
-            <address className="mt-6 not-italic text-center text-gray-600 text-sm">
-              Worthing, West Sussex, UK
-            </address>
-          </div>
-        </div>
-      </section>
+  {/* Headline */}
+  <h3 className="text-2xl font-bold text-black">
+  Let’s Talk About Your Project
+</h3>
+
+{/* Description */}
+<p className="text-gray-700 leading-relaxed max-w-xs">
+  Book a free 30‑minute call and tell me what you’re working on. No pressure, no sales pitch — just honest advice and a chance to see if we’re a good fit.
+</p>
+
+  {/* Call-to-Action */}
+  <a
+    href="https://calendly.com/your-username/30min"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-2 inline-block px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition"
+  >
+    Schedule via Calendly →
+  </a>
+</div>
+
+    {/* ➡ RIGHT: Contact Form */}
+    <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full">
+      <ContactForm />
+    </div>
+  </div>
+</section>
+
 
     </div>
   );
