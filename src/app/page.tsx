@@ -12,6 +12,114 @@ import {
   FaProjectDiagram,
 } from "react-icons/fa";
 
+function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error("Server error");
+      setStatus("sent");
+      e.currentTarget.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  /* ---------- SUCCESS STATE ---------- */
+  if (status === "sent") {
+    return (
+      <p className="text-center text-green-700">
+        ✅ Thanks! I’ll reply within one business day.
+      </p>
+    );
+  }
+
+  /* ---------- FORM STATE (idle / submitting / error) ---------- */
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* honeypot */}
+      <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
+
+      <div className="flex flex-col">
+        <label htmlFor="name" className="mb-1 font-medium text-gray-700">
+          Name
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          autoComplete="name"
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label htmlFor="email" className="mb-1 font-medium text-gray-700">
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label htmlFor="message" className="mb-1 font-medium text-gray-700">
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={5}
+          className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {status === "error" && (
+        <p className="text-red-600 text-sm">Sorry, something went wrong. Please try again.</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="w-full px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition disabled:opacity-50"
+      >
+        {status === "submitting" ? "Sending…" : "Send Message"}
+      </button>
+
+      <p className="mt-2 text-sm text-gray-500 text-center">
+        🔒 Your information is private and will never be shared.
+      </p>
+
+      {/* optional Calendly link */}
+      <a
+        href="https://calendly.com/your-username/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block text-center text-sm underline mt-4"
+      >
+        Prefer to chat? Book a slot →
+      </a>
+    </form>
+  );
+}
+
+
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
@@ -45,6 +153,7 @@ export default function Home() {
     setModalContent(content); // Set modal content dynamically based on the clicked service
     setIsModalOpen(!isModalOpen); // Toggle modal state
   };
+
 
   return (
     <div>
@@ -268,89 +377,44 @@ export default function Home() {
       )}
 
       {/* Contact Me Section */}
-      <section id="contact" className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12">
+  {/* CONTACT ME SECTION */}
+  <section
+        id="contact"
+        className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12"
+      >
         <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
         <p className="text-xl text-center mb-12 text-gray-700">
-          Ready to elevate your business with custom software solutions? Get in
-          touch today to discuss your project needs!
+          Ready to elevate your business with custom software solutions? Drop me a line below or
+          book a quick call — I usually reply within one business day.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact form as you currently have */}
-          <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full max-w-lg mx-auto">
-            <form className="w-full">
-              <div className="flex flex-col mb-4">
-                <label
-                  className="mb-2 text-gray-700 font-medium"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
-                <input
-                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  type="text"
-                  id="name"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label
-                  className="mb-2 text-gray-700 font-medium"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
-                <input
-                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  type="email"
-                  id="email"
-                  placeholder="Your Email"
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label
-                  className="mb-2 text-gray-700 font-medium"
-                  htmlFor="message"
-                >
-                  Message
-                </label>
-                <textarea
-                  className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="message"
-                  rows={5}
-                  placeholder="Your Message"
-                />
-              </div>
-              <button
-                type="submit"
-                className="px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300"
-              >
-                Send Message
-              </button>
-            </form>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+          {/* form */}
+          <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full">
+            <ContactForm />
           </div>
-          {/* Contact info as you currently have */}
+
+          {/* direct contact card */}
           <div className="bg-gray-100 p-6 shadow-lg rounded-lg flex flex-col items-center justify-center">
             <div className="flex items-center mb-4">
               <FaEnvelope className="text-2xl text-gray-700 mr-2" />
-              <a
-                href="mailto:finnjefferis@gmail.com"
-                className="text-xl font-medium text-gray-700"
-              >
+              <a href="mailto:finnjefferis@gmail.com" className="text-xl font-medium text-gray-700">
                 finnjefferis@gmail.com
               </a>
             </div>
             <div className="flex items-center">
               <FaPhone className="text-2xl text-gray-700 mr-2" />
-              <a
-                href="tel:+447939309355"
-                className="text-xl font-medium text-gray-700"
-              >
-                07939 309355
+              <a href="tel:+447939309355" className="text-xl font-medium text-gray-700">
+                07939 309355
               </a>
             </div>
+            <address className="mt-6 not-italic text-center text-gray-600 text-sm">
+              Worthing, West Sussex, UK
+            </address>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

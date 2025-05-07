@@ -14,6 +14,11 @@ body {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 .arrow-button::after {
   content: "";
   position: absolute;
