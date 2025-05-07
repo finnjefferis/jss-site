@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
 import { FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons for email and phone
 import {
   FaCode,
@@ -46,6 +48,32 @@ export default function Home() {
 
   return (
     <div>
+        <Head>
+        <title>Affordable Web & Software Development – Jefferis Software Solutions</title>
+        <meta
+          name="description"
+          content="Websites, e‑commerce, and custom software for small businesses and startups in West Sussex. Book a free 30‑minute consult today."
+        />
+        {/* Local business structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Jefferis Software Solutions",
+              url: "https://your‑domain.com",
+              telephone: "+447939309355",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Worthing",
+                addressRegion: "West Sussex",
+                addressCountry: "UK",
+              },
+            }),
+          }}
+        />
+      </Head>
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
         <h1
@@ -62,24 +90,21 @@ export default function Home() {
             className="text-lg md:text-3xl text-left md:text-center px-4 font-light text-gray-700 w-full"
           ></p>
         </div>
-        <div className="mt-32">
-          <div className="bounce">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-black"
-            >
-              <path d="M12 16L8 12H16L12 16Z" fill="currentColor" />
-            </svg>
-          </div>
-        </div>
+        <Link
+  href="#contact"
+  className="bounce mt-8 inline-block relative px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition arrow-button"
+>
+  Book a Free 30‑Minute Consultation
+</Link>
+
+
+
       </section>
 
       {/* Why Us Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
+      <section className="bg-gray-100 py-12 px-4">
+  <div className="max-w-6xl mx-auto flex flex-col items-center justify-center">
+
         <h2 className="text-4xl font-bold text-black mb-8">Why Us?</h2>
         <p className="text-xl text-gray-700 max-w-8xl text-center mb-12">
           We specialize in designing, developing, and implementing software that
@@ -144,6 +169,7 @@ export default function Home() {
               operations and maximize productivity.
             </p>
           </div>
+        </div>
         </div>
       </section>
       {/* Our Work Section */}
@@ -242,7 +268,7 @@ export default function Home() {
       )}
 
       {/* Contact Me Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12">
+      <section id="contact" className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12">
         <h2 className="text-4xl font-bold text-black mb-8">Get in Touch</h2>
         <p className="text-xl text-center mb-12 text-gray-700">
           Ready to elevate your business with custom software solutions? Get in
