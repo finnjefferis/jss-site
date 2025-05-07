@@ -108,7 +108,7 @@ function ContactForm() {
 
       {/* optional Calendly link */}
       <a
-        href="https://calendly.com/your-username/30min"
+        href="https://calendly.com/finnjefferis/30min"
         target="_blank"
         rel="noopener noreferrer"
         className="block text-center text-sm underline mt-4"
