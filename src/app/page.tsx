@@ -1,4 +1,17 @@
 "use client"; // This marks the component as a Client Component
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (opts: {
+        url: string;
+        parentElement: HTMLElement;
+        prefill?: Record<string, unknown>;
+        utm?: Record<string, unknown>;
+      }) => void;
+    };
+  }
+}
+
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -122,6 +135,34 @@ export default function Home() {
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
 
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
+// Calendly inline embed
+useEffect(() => {
+  // If the widget script is already on the page and Calendly exists, initialise immediately
+  if (window.Calendly) {
+    window.Calendly.initInlineWidget({
+      url: "https://calendly.com/finnjefferis/30min",
+      parentElement: document.getElementById("calendly-inline-widget")!,
+    });
+    return; // done
+  }
+
+  // Otherwise, load the script dynamically
+  const script = document.createElement("script");
+  script.src = "https://assets.calendly.com/assets/external/widget.js";
+  script.async = true;
+  script.onload = () => {
+    window.Calendly?.initInlineWidget({
+      url: "https://calendly.com/finnjefferis/30min",
+      parentElement: document.getElementById("calendly-inline-widget")!,
+    });
+  };
+  document.body.appendChild(script);
+
+  // tidy up if the component unmounts
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
 
   useEffect(() => {
     setIsVisible(true); // Trigger the fade-in effect for the heading
@@ -176,6 +217,12 @@ export default function Home() {
             }),
           }}
         />
+        <script
+  type="text/javascript"
+  src="https://assets.calendly.com/assets/external/widget.js"
+  async
+></script>
+
       </Head>
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
@@ -392,20 +439,12 @@ export default function Home() {
   Let’s Talk About Your Project
 </h3>
 
-{/* Description */}
-<p className="text-gray-700 leading-relaxed max-w-xs">
-  Book a free 30‑minute call and tell me what you’re working on. No pressure, no sales pitch — just honest advice and a chance to see if we’re a good fit.
-</p>
+
 
   {/* Call-to-Action */}
-  <a
-    href="https://calendly.com/your-username/30min"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="mt-2 inline-block px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition"
-  >
-    Schedule via Calendly →
-  </a>
+  <div id="calendly-inline-widget" className="w-full h-[330px] rounded-lg overflow-hidden" />
+
+
 </div>
 
     {/* ➡ RIGHT: Contact Form */}
