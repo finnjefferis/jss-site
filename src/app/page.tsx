@@ -1,16 +1,4 @@
 "use client"; // This marks the component as a Client Component
-declare global {
-  interface Window {
-    Calendly?: {
-      initInlineWidget: (opts: {
-        url: string;
-        parentElement: HTMLElement;
-        prefill?: Record<string, unknown>;
-        utm?: Record<string, unknown>;
-      }) => void;
-    };
-  }
-}
 
 
 import { useEffect, useRef, useState } from "react";
@@ -191,11 +179,7 @@ export default function Home() {
             }),
           }}
         />
-        <script
-  type="text/javascript"
-  src="https://assets.calendly.com/assets/external/widget.js"
-  async
-></script>
+    
 
       </Head>
       {/* Hero Section */}
@@ -228,12 +212,13 @@ export default function Home() {
 
       </section>
 {/* ---------- ABOUT ME SECTION ---------- */}
+{/* ---------- ABOUT ME SECTION ---------- */}
 <section className="bg-gray-100 py-16 px-4">
   <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 items-center">
     {/* ⬅ Portrait */}
     <div className="flex justify-center md:justify-start">
       <Image
-        src="/me.jpg"               // 400 × 400 head-shot in /public
+        src="/me.jpg"
         alt="Finn Jefferis"
         width={260}
         height={260}
@@ -244,17 +229,21 @@ export default function Home() {
 
     {/* ➡ Bio */}
     <div className="md:col-span-2">
-      <h2 className="text-4xl font-bold mb-4">Meet Finn</h2>
-
-      <p className="text-gray-700 leading-relaxed mb-6">
-        I’m an <strong>experienced full-stack developer</strong> based in
-        Worthing, specialising in React&nbsp;/ Next.js on the front and
-        .NET&nbsp;/ Laravel&nbsp;/ Python on the back. Over the past&nbsp;6 years
-        I’ve shipped production software for e-commerce, utilities, healthcare
-        and local SMEs—always with an eye on performance and ROI.
+      {/* smaller, cleaner title + tagline */}
+      <h2 className="text-4xl font-bold">Meet Finn</h2>
+      <p className="text-lg text-gray-600 mb-4">
+        Your local full-stack problem solver.
       </p>
 
-      <h3 className="text-xl font-semibold mb-3">A few wins:</h3>
+      {/* tighter story */}
+      <p className="text-gray-700 leading-relaxed mb-6">
+        Worthing-based dev pairing
+        <strong> React / Next.js</strong> fronts with
+        <strong> .NET / Laravel / Python</strong> power. Six years’ experience
+        shipping high-ROI software for e-commerce, utilities and SME clients.
+      </p>
+
+      <h3 className="text-xl font-semibold mb-3">Wins I’m proud of:</h3>
       <ul className="space-y-3">
         {[
         
@@ -269,15 +258,15 @@ export default function Home() {
         ))}
       </ul>
 
-      <h3 className="text-xl font-semibold mt-8 mb-3">Core stack:</h3>
+      <h3 className="text-xl font-semibold mt-8 mb-3">Core toolset:</h3>
       <p className="text-gray-700 leading-relaxed">
-        React&nbsp;/ Next.js • TypeScript • Tailwind • .NET&nbsp;(MVC, WPF) •
-        PHP&nbsp;/ Laravel • Python&nbsp;/ Django • REST & GraphQL APIs •
-        PostgreSQL / MySQL • Azure App Services & CI/CD
+        React&nbsp;/ Next.js • TypeScript • Tailwind • .NET • Laravel •
+        Python • REST &amp; GraphQL • PostgreSQL / MySQL • Azure CI/CD
       </p>
     </div>
   </div>
 </section>
+
 
       <section className="bg-white py-16 px-4">
   <div className="max-w-6xl mx-auto flex flex-col items-center">
