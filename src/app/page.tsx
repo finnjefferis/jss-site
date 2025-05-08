@@ -135,34 +135,8 @@ export default function Home() {
   const subheading = "Empowering Local Businesses with Cost-Effective Software";
 
   const textRef = useRef<HTMLParagraphElement>(null); // Ref to the paragraph element
-// Calendly inline embed
-useEffect(() => {
-  // If the widget script is already on the page and Calendly exists, initialise immediately
-  if (window.Calendly) {
-    window.Calendly.initInlineWidget({
-      url: "https://calendly.com/finnjefferis/30min",
-      parentElement: document.getElementById("calendly-inline-widget")!,
-    });
-    return; // done
-  }
 
-  // Otherwise, load the script dynamically
-  const script = document.createElement("script");
-  script.src = "https://assets.calendly.com/assets/external/widget.js";
-  script.async = true;
-  script.onload = () => {
-    window.Calendly?.initInlineWidget({
-      url: "https://calendly.com/finnjefferis/30min",
-      parentElement: document.getElementById("calendly-inline-widget")!,
-    });
-  };
-  document.body.appendChild(script);
 
-  // tidy up if the component unmounts
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
 
   useEffect(() => {
     setIsVisible(true); // Trigger the fade-in effect for the heading
@@ -237,21 +211,75 @@ useEffect(() => {
         <div className="flex items-center justify-center mt-2 sm:p-4 text-left md:text-center w-full">
           <p
             ref={textRef} // Assign the ref to the paragraph
-            className="text-lg md:text-3xl text-left md:text-center px-4 font-light text-gray-700 w-full"
+            className=" text-lg md:text-3xl text-left md:text-center px-4 font-light text-gray-700 w-full"
           ></p>
         </div>
         <Link
   href="#contact"
-  className="bounce mt-8 inline-block relative px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition arrow-button"
+  className={` bounce mt-8 inline-block relative px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition arrow-button mt-8 inline-block relative px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition 
+              duration-1000 ease-in-out 
+              ${isVisible ? "opacity-100" : "opacity-0"}`}
 >
   Book a Free 30‑Minute Consultation
 </Link>
 
 
 
-      </section>
 
-      <section className="bg-gray-100 py-16 px-4">
+      </section>
+{/* ---------- ABOUT ME SECTION ---------- */}
+<section className="bg-gray-100 py-16 px-4">
+  <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 items-center">
+    {/* ⬅ Portrait */}
+    <div className="flex justify-center md:justify-start">
+      <Image
+        src="/me.jpg"               // 400 × 400 head-shot in /public
+        alt="Finn Jefferis"
+        width={260}
+        height={260}
+        className="rounded-full shadow-lg"
+        priority
+      />
+    </div>
+
+    {/* ➡ Bio */}
+    <div className="md:col-span-2">
+      <h2 className="text-4xl font-bold mb-4">Meet Finn</h2>
+
+      <p className="text-gray-700 leading-relaxed mb-6">
+        I’m an <strong>experienced full-stack developer</strong> based in
+        Worthing, specialising in React&nbsp;/ Next.js on the front and
+        .NET&nbsp;/ Laravel&nbsp;/ Python on the back. Over the past&nbsp;6 years
+        I’ve shipped production software for e-commerce, utilities, healthcare
+        and local SMEs—always with an eye on performance and ROI.
+      </p>
+
+      <h3 className="text-xl font-semibold mb-3">A few wins:</h3>
+      <ul className="space-y-3">
+        {[
+        
+          "Slashed manual data entry for a local firm by integrating a bespoke C# MVC dashboard straight into Zoho CRM.",
+          "Redesigned a Carbon Calculator application, improving speed, mobile usability and ensured results were synced to the client’s CRM in real-time.",
+          "Refactored legacy code for a local e-commerce business, vastly improving SEO, trimming page-load seconds and lifting organic traffic.",
+        ].map(item => (
+          <li key={item} className="flex items-start gap-2 text-gray-600">
+            <BsCheck2Circle className="text-blue-600 mt-1 shrink-0" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <h3 className="text-xl font-semibold mt-8 mb-3">Core stack:</h3>
+      <p className="text-gray-700 leading-relaxed">
+        React&nbsp;/ Next.js • TypeScript • Tailwind • .NET&nbsp;(MVC, WPF) •
+        PHP&nbsp;/ Laravel • Python&nbsp;/ Django • REST & GraphQL APIs •
+        PostgreSQL / MySQL • Azure App Services & CI/CD
+      </p>
+    </div>
+  </div>
+</section>
+
+      <section className="bg-white py-16 px-4">
   <div className="max-w-6xl mx-auto flex flex-col items-center">
     <h2 className="text-4xl font-bold mb-10">How I Can Help</h2>
 
@@ -321,30 +349,88 @@ useEffect(() => {
 
 
       {/* Our Work Section */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 md:p-12">
-        <h2 className="text-4xl font-bold text-black mb-8">Our Work</h2>
-        <div className="flex items-center justify-center">
-          <div
-            className="bg-white p-8 shadow-lg rounded-lg cursor-pointer max-w-md"
-            onClick={() => toggleModal("Toolbox for Beyond Procurement")}
-          >
-            <Image
-              src="/toolbox.png"
-              alt="Toolbox for Beyond Procurement"
-              width={500}
-              height={300}
-              className="rounded-lg mb-4"
-            />
-            <h3 className="text-2xl font-semibold mb-2 text-center">
-              Toolbox for Beyond Procurement
-            </h3>
-            <p className="text-gray-600 text-center">
-              A comprehensive toolbox to streamline procurement processes for
-              local businesses.
-            </p>
-          </div>
+    {/* ---------- OUR WORK SECTION ---------- */}
+<section className="bg-gray-100 py-20 px-4">
+  <div className="max-w-6xl mx-auto">
+    <h2 className="text-4xl font-bold text-center mb-14">Our Work</h2>
+
+    {/* Responsive grid – cards stretch to equal height */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+
+      {/* CARD 1 */}
+      <div
+        className=" transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-white p-8 shadow-lg rounded-2xl cursor-pointer flex flex-col h-full"
+        onClick={() => toggleModal("Toolbox for Beyond Procurement")}
+      >
+        {/* fixed-height image wrapper keeps cards equal */}
+        <div className="relative w-full h-48 mb-6">
+          <Image
+            src="/toolbox.png"
+            alt="Toolbox for Beyond Procurement"
+            fill          // ⬅ fills the  w-full / h-48 box
+            className="object-cover rounded-lg"
+          />
         </div>
-      </section>
+
+        <h3 className="text-2xl font-semibold mb-2 text-center">
+          Toolbox for Beyond Procurement
+        </h3>
+        <p className="text-gray-600 text-center">
+          A comprehensive toolbox to streamline procurement processes for local
+          businesses.
+        </p>
+      </div>
+
+      {/* CARD 2 */}
+      <div
+        className="transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-white p-8 shadow-lg rounded-2xl cursor-pointer flex flex-col h-full"
+        onClick={() => toggleModal("Carbon Calculator for Beyond Procurement")}
+      >
+        <div className="relative w-full h-48 mb-6">
+          <Image
+            src="/carbon.png"
+            alt="Carbon Calculator"
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+
+        <h3 className="text-2xl font-semibold mb-2 text-center">
+          Carbon Calculator for Beyond Procurement
+        </h3>
+        <p className="text-gray-600 text-center">
+          React rebuild that boosted mobile UX and synced results to the client
+          CRM in real-time.
+        </p>
+      </div>
+
+      {/* CARD 3 */}
+      <div
+        className="transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl bg-white p-8 shadow-lg rounded-2xl cursor-pointer flex flex-col h-full"
+        onClick={() => toggleModal("Portfolio Platform")}
+      >
+        <div className="relative w-full h-48 mb-6">
+          <Image
+            src="/portfolio2.png"
+            alt="Portfolio Platform"
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+
+        <h3 className="text-2xl font-semibold mb-2 text-center">
+          Portfolio Platform
+        </h3>
+        <p className="text-gray-600 text-center">
+  A blazing-fast Next.js landing page showcasing creative layouts and selected personal projects.
+</p>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Modal */}
       {isModalOpen && (
@@ -416,8 +502,8 @@ useEffect(() => {
       )}
 
       {/* Contact Me Section */}
-  {/* CONTACT ME SECTION */}
-  <section
+
+<section
   id="contact"
   className="flex flex-col items-center justify-center min-h-screen bg-white p-6 md:p-12"
 >
@@ -427,25 +513,29 @@ useEffect(() => {
   </p>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-    {/* ⬅ LEFT: Calendly Booking Card */}
+    {/* ⬅ LEFT: Calendly Booking Card (Link version) */}
     <div className="bg-gray-100 p-8 shadow-lg rounded-2xl flex flex-col items-center text-center space-y-6">
-  {/* Icon with circle background */}
-  <div className="bg-stone-200 text-stone-800 p-4 rounded-full">
-    <FaRegCalendarAlt className="text-5xl" />
-  </div>
+      <div className="bg-stone-200 text-stone-800 p-4 rounded-full">
+        <FaRegCalendarAlt className="text-5xl" />
+      </div>
 
-  {/* Headline */}
-  <h3 className="text-2xl font-bold text-black">
-  Let’s Talk About Your Project
-</h3>
+      <h3 className="text-2xl font-bold text-black">
+        Let’s Talk About Your Project
+      </h3>
 
+      <p className="text-gray-600">
+        Use my calendar to book a free 30-minute call — no emails, no back-and-forth.
+      </p>
 
-
-  {/* Call-to-Action */}
-  <div id="calendly-inline-widget" className="w-full h-[330px] rounded-lg overflow-hidden" />
-
-
-</div>
+      <a
+        href="https://calendly.com/finnjefferis/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-800 transition"
+      >
+        Book a Call on Calendly
+      </a>
+    </div>
 
     {/* ➡ RIGHT: Contact Form */}
     <div className="bg-gray-100 p-6 shadow-lg rounded-lg w-full">
@@ -453,6 +543,7 @@ useEffect(() => {
     </div>
   </div>
 </section>
+
 
 
     </div>
